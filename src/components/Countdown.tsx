@@ -13,6 +13,7 @@ export default function Countdown({ dataslates }: CountdownProps) {
 
   useEffect(() => {
     const calculatedStats = calculateDataslateStats(dataslates);
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setStats(calculatedStats);
   }, [dataslates]);
 
