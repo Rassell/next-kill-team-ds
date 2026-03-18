@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@theme {
+  --color-killteam-dark: #0a0a0a;
+  --color-killteam-darker: #050505;
+  --color-killteam-blood: #8b0000;
+  --color-killteam-red: #dc2626;
+  --color-killteam-gold: #d4af37;
+  --color-killteam-silver: #c0c0c0;
+  --color-killteam-steel: #71797e;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-killteam-darker);
+    color: rgb(243 244 246);
+    font-family: system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  .gradient-blood {
+    background: linear-gradient(135deg, #8b0000 0%, #dc2626 100%);
+  }
+}
