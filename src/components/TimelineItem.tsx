@@ -27,7 +27,7 @@ export default function TimelineItem({ dataslate, index }: TimelineItemProps) {
     >
       {/* Content Card */}
       <div
-        className={`w-5/12 cursor-pointer group ${isEven ? 'text-right pr-8' : 'text-left pl-8'}`}
+        className={`w-5/12 cursor-pointer group ${isEven ? 'text-right' : 'text-left'}`}
         onClick={() => openInNewTab(dataslate.link)}
       >
         <div className="bg-killteam-dark border border-killteam-steel/30 rounded-lg p-4 hover:border-killteam-red transition-colors duration-300 shadow-lg hover:shadow-killteam-red/20">
