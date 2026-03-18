@@ -64,7 +64,7 @@ function App() {
 
         {/* Divider */}
         <div className="max-w-5xl mx-auto px-4">
-          <div className="h-px bg-gradient-to-r from-transparent via-killteam-steel/30 to-transparent"></div>
+          <div className="h-px bg-linear-to-r from-transparent via-killteam-steel/30 to-transparent"></div>
         </div>
 
         {/* Timeline Section */}

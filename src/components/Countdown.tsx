@@ -78,7 +78,7 @@ export default function Countdown({ dataslates }: CountdownProps) {
           </span>
         </div>
         
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-start md:items-center flex-col md:flex-row">
           <span className="text-killteam-steel">Last Dataslate:</span>
           <a
             href={stats.lastPost.link}
