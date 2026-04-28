@@ -3,14 +3,17 @@ import type { Dataslate, DataslateStats } from '../types/Dataslate';
 /**
  * Calculate the average number of days between dataslate publications
  */
-export function calculateAverageDaysBetweenPosts(dataslates: Dataslate[]): number {
+export function calculateAverageDaysBetweenPosts(
+  dataslates: Dataslate[]
+): number {
   if (dataslates.length < 2) {
     return 0;
   }
 
   // Sort by date (oldest first)
   const sorted = [...dataslates].sort(
-    (a, b) => new Date(a.publishedDate).getTime() - new Date(b.publishedDate).getTime()
+    (a, b) =>
+      new Date(a.publishedDate).getTime() - new Date(b.publishedDate).getTime()
   );
 
   let totalDays = 0;
@@ -34,7 +37,8 @@ export function getLastPost(dataslates: Dataslate[]): Dataslate | null {
   }
 
   return [...dataslates].sort(
-    (a, b) => new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime()
+    (a, b) =>
+      new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime()
   )[0];
 }
 
@@ -45,21 +49,23 @@ function getLastWednesdayOfMonth(year: number, month: number): Date {
   // Start from the last day of the month
   const lastDay = new Date(year, month + 1, 0);
   const dayOfWeek = lastDay.getDay();
-  
+
   // Wednesday is day 3 (0 = Sunday, 3 = Wednesday)
   // Calculate how many days back to go to get to Wednesday
   const daysToSubtract = (dayOfWeek + 4) % 7; // This maps any day to the previous Wednesday
-  
+
   const lastWednesday = new Date(lastDay);
   lastWednesday.setDate(lastDay.getDate() - daysToSubtract);
-  
+
   return lastWednesday;
 }
 
 /**
  * Calculate statistics and predict the next dataslate date
  */
-export function calculateDataslateStats(dataslates: Dataslate[]): DataslateStats | null {
+export function calculateDataslateStats(
+  dataslates: Dataslate[]
+): DataslateStats | null {
   if (dataslates.length === 0) {
     return null;
   }
@@ -71,21 +77,26 @@ export function calculateDataslateStats(dataslates: Dataslate[]): DataslateStats
 
   const averageDays = calculateAverageDaysBetweenPosts(dataslates);
   const lastPostDate = new Date(lastPost.publishedDate);
-  
+
   // Add average days to last post date to predict next date
   let predictedNextDate = new Date(lastPostDate);
-  predictedNextDate.setDate(predictedNextDate.getDate() + Math.round(averageDays));
+  predictedNextDate.setDate(
+    predictedNextDate.getDate() + Math.round(averageDays)
+  );
+  // Set hour to 16:00 (4pm)
+  predictedNextDate.setHours(16, 0, 0, 0);
 
   // Check if predicted date is in the past
   const now = new Date();
   const diffInMs = predictedNextDate.getTime() - now.getTime();
-  
+
   if (diffInMs < 0) {
     // If predicted date already passed, use the last Wednesday of that month
     const year = predictedNextDate.getFullYear();
     const month = predictedNextDate.getMonth();
     predictedNextDate = getLastWednesdayOfMonth(year, month);
-    
+    // Set hour to 16:00 (4pm)
+    predictedNextDate.setHours(16, 0, 0, 0);
     // If that Wednesday also already passed, try next month
     if (predictedNextDate.getTime() < now.getTime()) {
       const nextMonth = month + 1;
@@ -93,6 +104,9 @@ export function calculateDataslateStats(dataslates: Dataslate[]): DataslateStats
       const adjustedMonth = nextMonth > 11 ? 0 : nextMonth;
       predictedNextDate = getLastWednesdayOfMonth(nextYear, adjustedMonth);
     }
+
+    // Set hour to 16:00 (4pm)
+    predictedNextDate.setHours(16, 0, 0, 0);
   }
 
   return {
