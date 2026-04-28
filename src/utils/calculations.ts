@@ -95,6 +95,9 @@ export function calculateDataslateStats(dataslates: Dataslate[]): DataslateStats
     }
   }
 
+  // set 16:00 UTC time for consistency
+  predictedNextDate.setUTCHours(16, 0, 0, 0);
+
   return {
     averageDaysBetweenPosts: averageDays,
     predictedNextDate,
