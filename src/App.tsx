@@ -82,6 +82,19 @@ function App() {
           <p className="text-killteam-steel text-xs mt-2">
             Data is manually updated. Predictions are estimates based on historical patterns.
           </p>
+          <div className="mt-6 flex flex-col items-center gap-1">
+            <span className="text-killteam-gold text-sm">
+              Created with <span role="img" aria-label="love">❤️</span> for the Kill Team community
+            </span>
+            <a
+              href="https://github.com/Rassell/next-kill-team-ds"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-killteam-steel underline text-xs hover:text-killteam-gold transition"
+            >
+              View on GitHub
+            </a>
+          </div>
         </div>
       </footer>
     </div>
