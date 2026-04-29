@@ -83,8 +83,8 @@ export function calculateDataslateStats(
   predictedNextDate.setDate(
     predictedNextDate.getDate() + Math.round(averageDays)
   );
-  // Set hour to 16:00 (4pm)
-  predictedNextDate.setHours(16, 0, 0, 0);
+  // Set hour to 11:00 (11am)
+  predictedNextDate.setHours(11, 0, 0, 0);
 
   // Check if predicted date is in the past
   const now = new Date();
@@ -95,8 +95,7 @@ export function calculateDataslateStats(
     const year = predictedNextDate.getFullYear();
     const month = predictedNextDate.getMonth();
     predictedNextDate = getLastWednesdayOfMonth(year, month);
-    // Set hour to 16:00 (4pm)
-    predictedNextDate.setHours(16, 0, 0, 0);
+    
     // If that Wednesday also already passed, try next month
     if (predictedNextDate.getTime() < now.getTime()) {
       const nextMonth = month + 1;
@@ -105,8 +104,8 @@ export function calculateDataslateStats(
       predictedNextDate = getLastWednesdayOfMonth(nextYear, adjustedMonth);
     }
 
-    // Set hour to 16:00 (4pm)
-    predictedNextDate.setHours(16, 0, 0, 0);
+    // Set hour to 11:00 (11am)
+    predictedNextDate.setHours(11, 0, 0, 0);
   }
 
   return {
