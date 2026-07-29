@@ -50,7 +50,7 @@ export default function Countdown({ dataslates }: CountdownProps) {
             Mission Failed
           </div>
           <div className="text-killteam-steel text-lg md:text-xl italic">
-            Games Workshop have abandoned us
+            Games Workshop has abandoned us
           </div>
         </div>
       </div>
