@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react';
 
-import { calculateDataslateStats, calculateTimeRemaining, type TimeRemaining } from '../utils/calculations';
+import {
+  calculateDataslateStats,
+  calculateTimeRemaining,
+  type TimeRemaining,
+} from '../utils/calculations';
 import type { Dataslate, DataslateStats } from '../types/Dataslate';
 
 interface CountdownProps {
@@ -9,7 +13,9 @@ interface CountdownProps {
 
 export default function Countdown({ dataslates }: CountdownProps) {
   const [stats, setStats] = useState<DataslateStats | null>(null);
-  const [timeRemaining, setTimeRemaining] = useState<TimeRemaining | null>(null);
+  const [timeRemaining, setTimeRemaining] = useState<TimeRemaining | null>(
+    null
+  );
 
   useEffect(() => {
     const calculatedStats = calculateDataslateStats(dataslates);
@@ -52,6 +58,16 @@ export default function Countdown({ dataslates }: CountdownProps) {
           <div className="text-killteam-steel text-lg md:text-xl italic">
             Games Workshop has abandoned us
           </div>
+
+          <a
+            href="https://es.wallapop.com/item/kill-team-scout-squad-1107357492"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-killteam-gold underline hover:text-killteam-red transition-colors"
+          >
+            Mientras esperas la siguiente DS puedes comprar estos tremendos
+            scouts
+          </a>
         </div>
       </div>
     );
@@ -85,14 +101,16 @@ export default function Countdown({ dataslates }: CountdownProps) {
             {formatDate(stats.predictedNextDate)}
           </span>
         </div>
-        
+
         <div className="flex justify-between items-center border-b border-killteam-steel/20 pb-3">
-          <span className="text-killteam-steel">Average Days Between Releases:</span>
+          <span className="text-killteam-steel">
+            Average Days Between Releases:
+          </span>
           <span className="text-gray-100 font-semibold">
             {Math.round(stats.averageDaysBetweenPosts)} days
           </span>
         </div>
-        
+
         <div className="flex justify-between items-start md:items-center flex-col md:flex-row">
           <span className="text-killteam-steel">Last Dataslate:</span>
           <a
