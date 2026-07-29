@@ -42,6 +42,21 @@ export default function Countdown({ dataslates }: CountdownProps) {
     );
   }
 
+  if (timeRemaining.totalSeconds <= 0) {
+    return (
+      <div className="w-full max-w-4xl mx-auto px-4 pb-8">
+        <div className="flex flex-col items-center justify-center min-h-100 text-center gap-4">
+          <div className="text-5xl md:text-7xl font-black tracking-widest text-killteam-red uppercase drop-shadow-[0_0_20px_rgba(139,0,0,0.6)]">
+            Mission Failed
+          </div>
+          <div className="text-killteam-steel text-lg md:text-xl italic">
+            Games Workshop have abandoned us
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   const formatDate = (date: Date) => {
     return date.toLocaleDateString('en-US', {
       year: 'numeric',

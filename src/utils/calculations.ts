@@ -95,14 +95,6 @@ export function calculateDataslateStats(
     const year = predictedNextDate.getFullYear();
     const month = predictedNextDate.getMonth();
     predictedNextDate = getLastWednesdayOfMonth(year, month);
-    
-    // If that Wednesday also already passed, try next month
-    if (predictedNextDate.getTime() < now.getTime()) {
-      const nextMonth = month + 1;
-      const nextYear = nextMonth > 11 ? year + 1 : year;
-      const adjustedMonth = nextMonth > 11 ? 0 : nextMonth;
-      predictedNextDate = getLastWednesdayOfMonth(nextYear, adjustedMonth);
-    }
 
     // Set hour to 11:00 (11am)
     predictedNextDate.setHours(11, 0, 0, 0);
